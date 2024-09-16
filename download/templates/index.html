@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Просмотр файлов на Яндекс.Диске</title>
+</head>
+<body>
+<h1>Просмотр файлов на Яндекс.Диске</h1>
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="public_key" placeholder="Введите публичную ссылку">
+    <button type="submit">Просмотреть</button>
+</form>
+{% if files %}
+<h2>Список файлов</h2>
+<ul>
+    {% for file in files %}
+    <li>
+        {{ file.name}}
+        <a href="{{ public_key }}/{{ file.name }}">Скачать</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+</body>
+</html>
