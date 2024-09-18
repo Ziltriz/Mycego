@@ -5,6 +5,7 @@
 </head>
 <body>
 <h1>Просмотр файлов на Яндекс.Диске</h1>
+
 <form method="post">
     {% csrf_token %}
     <input type="text" name="public_key" placeholder="Введите публичную ссылку">
@@ -12,11 +13,25 @@
 </form>
 {% if files %}
 <h2>Список файлов</h2>
+
+<form method="post" id="filter">
+    {% csrf_token %}
+    <label>
+        <select name="filter">
+            {% for filter in filters %}
+            <option value="{{filter}} ">{{filter}}</option>
+            {% endfor %}
+        </select>
+        <input type="hidden" value="{{public_key}}" name="public_key">
+    </label>
+    <button type="submit">Применить</button>
+</form>
+
 <ul>
     {% for file in files %}
     <li>
         {{ file.name}}
-        <a href="{{ public_key }}/{{ file.name }}">Скачать</a>
+        <a href="{{ file.file }}">Скачать</a>
     </li>
     {% endfor %}
 </ul>
