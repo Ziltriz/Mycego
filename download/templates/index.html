@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Просмотр файлов на Яндекс.Диске</title>
+    <title>View files on Yandex.Disk</title>
 </head>
 <body>
-<h1>Просмотр файлов на Яндекс.Диске</h1>
+<h1>View files on Yandex.Disk</h1>
 
 <form method="post">
     {% csrf_token %}
-    <input type="text" name="public_key" placeholder="Введите публичную ссылку">
-    <button type="submit">Просмотреть</button>
+    <input type="text" name="public_key" placeholder="Enter public link">
+    <button type="submit">Show</button>
 </form>
 {% if files %}
-<h2>Список файлов</h2>
+<h2>Files list</h2>
 
 <form method="post" id="filter">
     {% csrf_token %}
@@ -24,14 +24,14 @@
         </select>
         <input type="hidden" value="{{public_key}}" name="public_key">
     </label>
-    <button type="submit">Применить</button>
+    <button type="submit">Apply</button>
 </form>
 
 <ul>
     {% for file in files %}
     <li>
         {{ file.name}}
-        <a href="{{ file.file }}">Скачать</a>
+        <a href="{{ file.file }}">Download</a>
     </li>
     {% endfor %}
 </ul>
