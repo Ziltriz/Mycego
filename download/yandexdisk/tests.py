@@ -2,7 +2,7 @@ import pytest
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.test import Client
-from .views import IndexView
+
 
 @pytest.fixture
 def client():
